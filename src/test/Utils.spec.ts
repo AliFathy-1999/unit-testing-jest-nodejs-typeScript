@@ -19,8 +19,12 @@ describe('Utils test suite', () => {
         const expectedUpperCase = 'MY-STRING';
         const expectedLowerCase = 'my-string';
         const expectedLength: number = 9;
-        const expectedCharacters = ['M', 'y', '-', 'S', 't', 'r', 'i', 'n', 'g'];
+        const expectedSameOrderCharacters = ['M', 'y', '-', 'S', 't', 'r', 'i', 'n', 'g'];
+        const expectedNotSameOrderCharacters = ['S', 't', 'r', 'i', 'n', 'g', 'M', 'y', '-'];
+
         const expectedExtraInfo = {};
+        const expectedNotUndefined = undefined;
+        const expectedContain = 'g';
         const actual = sut('My-String');
 
         expect(actual.upperCase).toBe(expectedUpperCase);
@@ -28,7 +32,18 @@ describe('Utils test suite', () => {
 
         expect(actual.length).toBe(expectedLength);
         expect(actual.characters).toHaveLength(expectedLength);
-        expect(actual.characters).toEqual(expectedCharacters)
+
+        expect(actual.characters).toEqual(expectedSameOrderCharacters)
+        expect(actual.characters).toEqual(
+            expect.arrayContaining(expectedNotSameOrderCharacters)
+        )
+
         expect(actual.extraInfo).toEqual(expectedExtraInfo)
+
+        expect(actual.extraInfo).not.toBe(expectedNotUndefined)
+        expect(actual.extraInfo).not.toBeUndefined()
+        expect(actual.extraInfo).toBeDefined()
+        expect(actual.extraInfo).toBeTruthy()
+        expect(actual.characters).toContain<string>(expectedContain)
     })
 })
