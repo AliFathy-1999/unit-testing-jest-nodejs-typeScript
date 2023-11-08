@@ -13,37 +13,45 @@ describe('Utils test suite', () => {
         // Assert
         expect(actual).toBe(expected);
     })
-
-    it('Should return info for valid string', ()=>{
-        const sut= getStringInfo;
-        const expectedUpperCase = 'MY-STRING';
-        const expectedLowerCase = 'my-string';
-        const expectedLength: number = 9;
-        const expectedSameOrderCharacters = ['M', 'y', '-', 'S', 't', 'r', 'i', 'n', 'g'];
-        const expectedNotSameOrderCharacters = ['S', 't', 'r', 'i', 'n', 'g', 'M', 'y', '-'];
-
-        const expectedExtraInfo = {};
-        const expectedNotUndefined = undefined;
-        const expectedContain = 'g';
-        const actual = sut('My-String');
-
-        expect(actual.upperCase).toBe(expectedUpperCase);
-        expect(actual.lowerCase).toBe(expectedLowerCase);
-
-        expect(actual.length).toBe(expectedLength);
-        expect(actual.characters).toHaveLength(expectedLength);
-
-        expect(actual.characters).toEqual(expectedSameOrderCharacters)
-        expect(actual.characters).toEqual(
-            expect.arrayContaining(expectedNotSameOrderCharacters)
-        )
-
-        expect(actual.extraInfo).toEqual(expectedExtraInfo)
-
-        expect(actual.extraInfo).not.toBe(expectedNotUndefined)
-        expect(actual.extraInfo).not.toBeUndefined()
-        expect(actual.extraInfo).toBeDefined()
-        expect(actual.extraInfo).toBeTruthy()
-        expect(actual.characters).toContain<string>(expectedContain)
+    describe('Get string info for arg My-String should', ()=>{
+        test('Should Return Uppercase string', ()=>{
+            const actual = getStringInfo('My-String');
+            expect(actual.upperCase).toBe('MY-STRING');
+        })
+        test('Should Return Lowercase string', ()=>{
+            const actual = getStringInfo('My-String');
+            expect(actual.lowerCase).toBe('my-string');
+        })
+        test('Should Return length 9', ()=>{
+            const actual = getStringInfo('My-String');
+            expect(actual.length).toBe(9);
+        })
+        test('Should Return an array of length 9', ()=>{
+            const actual = getStringInfo('My-String');
+            expect(actual.characters).toHaveLength(9);
+        })
+        test('Should Return an array of not same order characters but in array', ()=>{
+            const actual = getStringInfo('My-String');
+            expect(actual.characters).toEqual(
+                expect.arrayContaining([ 'S', 't', 'r', 'i', 'n', 'g', 'M', 'y', '-'])
+            )
+        })
+        test('Should Return an array of same order characters in array', ()=>{
+            const actual = getStringInfo('My-String');
+            expect(actual.characters).toEqual(['M', 'y', '-', 'S', 't', 'r', 'i', 'n', 'g'])
+        })
+        test('Should Return an object with extra info', ()=>{
+            const actual = getStringInfo('My-String');
+            expect(actual.extraInfo).not.toBeUndefined()
+            expect(actual.extraInfo).not.toBeUndefined()
+            expect(actual.extraInfo).toBeDefined()
+            expect(actual.extraInfo).toBeTruthy()
+            expect(actual.extraInfo).toEqual({})
+        })
+        test('Should Return conntain character in array ', ()=>{
+            const actual = getStringInfo('My-String');
+            expect(actual.characters).toContain<string>('g')
+        })
     })
+
 })
