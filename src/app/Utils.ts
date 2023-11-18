@@ -1,6 +1,8 @@
 
 class stringUtils {
     toUpperCase(str: string): string {
+        // if(!str) throw new Error("Invalid String"); // Use Done If comment it.
+        if(!str) throw new Error("Invalid String");
         return toUpperCase(str);
     }
 }

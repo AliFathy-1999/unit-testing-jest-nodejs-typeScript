@@ -23,6 +23,37 @@ describe('Utils test suite', () => {
             console.log("Actual test");
             
         })
+
+        it('Should throw error on invalid string - function', () => {
+            // Arrange
+            /**
+             * This function tests the behavior of the `toUpperCase` function when provided an empty string.
+             * It expects the function to throw an error.
+            */
+            function expectError() {
+                const actual = sut.toUpperCase('');
+            }
+            expect(expectError).toThrow();
+            expect(expectError).toThrowError('Invalid String');
+        })
+        it('Should throw error on invalid string - arrow function', () => {
+            expect(()=> sut.toUpperCase('')).toThrow();
+            expect(()=> sut.toUpperCase('')).toThrowError('Invalid String');
+        })
+
+        it('Should throw error on invalid string - try catch block', (done) => {
+            try {
+                sut.toUpperCase('');
+                done('GetStringInfo should throw error for invalid string'); 
+            } catch (error) {
+                expect(error).toBeInstanceOf(Error);
+                expect(error).toHaveProperty('message', 'Invalid String');
+                expect(error.message).toBe('Invalid String');
+                done();
+            }
+            expect(()=> sut.toUpperCase('')).toThrow();
+            expect(()=> sut.toUpperCase('')).toThrowError('Invalid String');
+        })
     })
 
 
