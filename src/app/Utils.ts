@@ -1,4 +1,11 @@
 
+class stringUtils {
+    toUpperCase(str: string): string {
+        return toUpperCase(str);
+    }
+}
+
+
 function toUpperCase(str: string): string {
     return str.toUpperCase();
 }
@@ -25,5 +32,6 @@ function getStringInfo(arg: string): stringInfo{
 export {
     toUpperCase,
     getStringInfo,
-    stringInfo
+    stringInfo,
+    stringUtils
 }

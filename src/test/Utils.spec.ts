@@ -1,7 +1,31 @@
-import { toUpperCase,getStringInfo } from "../app/Utils";
+import { toUpperCase,getStringInfo, stringUtils } from "../app/Utils";
 
 describe('Utils test suite', () => {
     
+    describe('String utils tests', () => {
+        
+        let sut: stringUtils;
+        // Before each test make instance of object stringUtils
+        beforeEach(() => {
+            sut = new stringUtils(); // Independent objects
+            console.log("Setup");
+        })
+
+        afterEach(() => {
+            sut = null
+            console.log("Teardown");
+        })
+        it('Should Return Uppercase string', () => {
+            // Arrange
+            // const sut = new stringUtils(); // Replace it with jest hooks
+            const actual = sut.toUpperCase('abc');
+            expect(actual).toBe('ABC');
+            console.log("Actual test");
+            
+        })
+    })
+
+
     it('Test upper case function', () => {
         // Arrange
         const sut = toUpperCase;
@@ -54,7 +78,7 @@ describe('Utils test suite', () => {
         })
     })
 
-    describe.only("ToUpperCase test cases", ()=>{
+    describe("ToUpperCase test cases", ()=>{
         it.each([
             { input : 'abc', expected : 'ABC'},
             { input : 'My-String', expected : 'MY-STRING'},
