@@ -2,7 +2,7 @@ import { toUpperCase,getStringInfo, stringUtils } from "../app/Utils";
 
 describe('Utils test suite', () => {
     
-    describe.only('String utils tests', () => {
+    describe('String utils tests', () => {
         
         let sut: stringUtils;
         // Before each test make instance of object stringUtils
@@ -18,7 +18,7 @@ describe('Utils test suite', () => {
 
         test.todo('long string length');
 
-        it.only('Should Return Uppercase string', () => {
+        it('Should Return Uppercase string', () => {
             // Arrange
             // const sut = new stringUtils(); // Replace it with jest hooks
             const actual = sut.toUpperCase('abc');
