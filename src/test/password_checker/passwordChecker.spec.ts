@@ -15,6 +15,7 @@ describe('PasswordChecker testing', ()=>{
     afterEach(()=>{
         sut = null;
     })
+
     it('Length is less than 8 characters is invalid',()=>{
         // * step 1: enter invalid password 7 letters
         const actual = sut.checkPassword("1234567");
@@ -57,5 +58,10 @@ describe('PasswordChecker testing', ()=>{
         const actual = sut.checkPassword("Abcd1234!");
         expect(actual.reasons).toHaveLength(0)
         expect(actual.isValid).toBe(true)
+    })
+
+    it('Admin password with no number is invalid ',()=>{
+        const actual = sut.checkAdminPassword("Abcd1234!");
+        expect(actual.reasons).not.toContain(PasswordErrors.NO_NUMBER)
     })
 })
