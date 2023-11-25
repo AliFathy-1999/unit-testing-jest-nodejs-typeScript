@@ -15,6 +15,9 @@ describe('Utils test suite', () => {
             sut = null
             console.log("Teardown");
         })
+
+        test.todo('long string length');
+
         it('Should Return Uppercase string', () => {
             // Arrange
             // const sut = new stringUtils(); // Replace it with jest hooks
