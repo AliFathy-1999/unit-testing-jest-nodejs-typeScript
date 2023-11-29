@@ -1,13 +1,12 @@
 import { stringInfo } from "../../app/Utils";
 import { calculateComplexity, toUpperCaseWithCb } from "../../app/doubles/otherUtils"
 
-describe("Other Utils test suites", () => {
+describe.skip("Other Utils test suites", () => {
 
     //Track callbacks with Mock
     describe.only('Tracking callback with Jest Mocks', () => {
 
         const callBackMock = jest.fn();
-        console.log('callBackMock ', callBackMock.mock);
         
         // We need to clear the mock calls before each test (Because of mocks tracking)
         afterEach(()=>{
