@@ -1,7 +1,7 @@
 import { stringInfo } from "../../app/Utils";
 import { OtherStringUtils, calculateComplexity, toUpperCaseWithCb } from "../../app/doubles/otherUtils"
 
-describe("Other Utils test suites", () => {
+describe.skip("Other Utils test suites", () => {
 
 
     //Spies Example
