@@ -1,7 +1,6 @@
 import { Authorizer } from "../../../app/server_app/auth/Authorizer";
 import { RegisterHandler } from "../../../app/server_app/handlers/RegisterHandler";
 import { IncomingMessage, ServerResponse } from "http";
-import { getRequestBody } from "../../../app/server_app/utils/Utils";
 import { HTTP_CODES, HTTP_METHODS } from "../../../app/server_app/model/ServerModel";
 import { Account } from "../../../app/server_app/model/AuthModel";
 
