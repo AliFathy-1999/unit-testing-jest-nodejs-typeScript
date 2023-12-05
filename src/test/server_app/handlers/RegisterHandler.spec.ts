@@ -14,9 +14,7 @@ jest.mock("../../../app/server_app/utils/Utils", ()=>({
 
 describe('RegisterHandler testing suites', ()=>{
     let sut: RegisterHandler;
-    // private authorizer: Authorizer;
-    // private request: IncomingMessage
-    // private response: ServerResponse;
+
     const requestMock = {
         method: undefined
     }
@@ -54,5 +52,25 @@ describe('RegisterHandler testing suites', ()=>{
         await sut.handleRequest();
         expect(responseMock.statusCode).toBe(HTTP_CODES.CREATED)
         expect(responseMock.writeHead).toHaveBeenCalledWith(HTTP_CODES.CREATED, { 'Content-Type': 'application/json' });
-        expect(responseMock.write).toHaveBeenCalledWith(JSON.stringify({ userId: fakeId }));})
+        expect(responseMock.write).toHaveBeenCalledWith(JSON.stringify({ userId: fakeId }))
+    })
+    it('Should not register invalid accounts in request', async () => {
+        requestMock.method = HTTP_METHODS.POST;
+        getRequestBodyMock.mockResolvedValueOnce({});
+        await sut.handleRequest();
+        expect(responseMock.statusCode).toBe(HTTP_CODES.BAD_REQUEST)
+        expect(responseMock.writeHead).toHaveBeenCalledWith(HTTP_CODES.BAD_REQUEST, { 'Content-Type': 'application/json' });
+        expect(responseMock.write).toHaveBeenCalledWith(JSON.stringify('userName and password required'))
+    })
+    
+    it('Should do nothing for not supported methods [POST] only', async () => {
+        requestMock.method = HTTP_METHODS.GET;
+        
+        await sut.handleRequest();
+        console.log(requestMock);
+
+        expect(responseMock.writeHead).not.toHaveBeenCalled();
+        expect(responseMock.write).not.toHaveBeenCalled()
+        expect(getRequestBodyMock).not.toHaveBeenCalled()
+    })
 })
