@@ -42,7 +42,6 @@ export class Server {
             }
         } catch (error) {
             response.writeHead(HTTP_CODES.INTERNAL_SERVER_ERROR, JSON.stringify(`Internal server error: ${error.message}`))
-            console.log(error);
         }
     }
 

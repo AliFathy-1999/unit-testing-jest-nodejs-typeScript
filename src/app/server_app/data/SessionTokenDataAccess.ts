@@ -35,6 +35,6 @@ export class SessionTokenDataAccess {
     }
 
     private generateExpirationTime() {
-        return new Date(Date.now() + 60 * 60 * 1000);
+        return new Date(Date.now() + 60 * 60 * 1000); // 1h
     }
 }
