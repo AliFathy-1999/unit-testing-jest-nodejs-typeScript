@@ -3,7 +3,7 @@ import { HTTP_CODES, HTTP_METHODS } from "../../../app/server_app/model/ServerMo
 export class ResponseTestWrapper {
     public statusCode: HTTP_CODES;
     public headers = new Array<object>();
-    public body: { [key: string]: any };
+    public body: object;
     public writeHead(statusCode: HTTP_CODES, header: { [key: string]: string }){ 
         this.statusCode = statusCode;
         this.headers.push(header);
@@ -16,7 +16,7 @@ export class ResponseTestWrapper {
     }
     public clearFields(){
         this.statusCode = undefined;
-        this.headers = [];
+        this.headers.length = 0;
         this.body = undefined;
     }
 }

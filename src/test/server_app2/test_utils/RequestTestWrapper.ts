@@ -1,23 +1,23 @@
 import { HTTP_METHODS } from "../../../app/server_app/model/ServerModel";
 
 export class RequestTestWrapper {
-    public body: { [key: string]: any };
+    public body:object;
     public method: HTTP_METHODS;
-    public headers: { [key: string]: string };
     public url: string;
+    public headers = {};
 
     public on(event, cb){
-        if(event === 'data'){
+        if(event == 'data'){
             cb(JSON.stringify(this.body));
-        }
-        if(event === 'end'){
+        }else {
             cb();
         }
     }
     public clearFields(){
         this.body = undefined;
         this.method = undefined;
-        this.headers = {};
         this.url = undefined;
+        this.headers = {};
+        
     }
 }
